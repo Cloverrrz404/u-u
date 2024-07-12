@@ -1,0 +1,41 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+//INTERATIVO
+unsigned long long int bdi(unsigned long long int nB) {
+    unsigned long long int nD = 0;
+    int ex = 0;
+    
+    while (nB != 0) {
+        int resto = nB % 10;
+        nD += resto * pow(2, ex);
+        nB /= 10;
+        ex++;
+    }
+    
+    return nD;
+}
+//RECURSIVO
+unsigned long long int bdr(unsigned long long int nB, int ex = 0) {
+    if (nB == 0)
+        return 0;
+    else
+        return (nB % 10) * pow(2, ex) + bdr(nB / 10, ex + 1);
+}
+
+int main() {
+    unsigned long long int nB;
+
+    cout << "Digite um numero binario: ";
+    cin >> nB;
+
+    unsigned long long int resultadoIterativo = bdi(nB);
+    cout << "Resultado iterativo: " << resultadoIterativo << endl;
+
+    unsigned long long int resultadoRecursivo = bdr(nB);
+    cout << "Resultado recursivo: " << resultadoRecursivo << endl;
+
+    return 0;
+    }
